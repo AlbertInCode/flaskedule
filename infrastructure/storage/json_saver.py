@@ -1,11 +1,12 @@
 import json
+from config import PROFESORES_FILE, ASIGNATURAS_FILE
 
-def guardar_profesores(profesores, ruta='data/profesores.json'):
+def guardar_profesores(profesores, path=PROFESORES_FILE):
     export = [{"nombre": p.nombre, "apellido": p.apellido, "tutor_de": p.tutor_de} for p in profesores]
-    with open(ruta, 'w', encoding='utf-8') as file:
-        json.dump(export, file, ensure_ascii=False, indent=2)
+    with open(path, 'w') as f:
+        json.dump(export, f, indent=2)
 
-def guardar_asignaturas(asignaturas, ruta='data/asignaturas.json'):
+def guardar_asignaturas(asignaturas, path=ASIGNATURAS_FILE):
     export = []
     for a in asignaturas:
         nombres = [p.nombre for p in a.profesores()]
@@ -17,5 +18,5 @@ def guardar_asignaturas(asignaturas, ruta='data/asignaturas.json'):
             "horas": a.horas,
             "profesores": nombres
         })
-    with open(ruta, 'w', encoding='utf-8') as file:
-        json.dump(export, file, ensure_ascii=False, indent=2)
+    with open(path, 'w') as f:
+        json.dump(export, f, indent=2)

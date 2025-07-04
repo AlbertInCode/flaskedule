@@ -6,7 +6,7 @@
         <div class="card-content">
           <h2>{{ profe.nombre }} {{ profe.apellido }}</h2>
           <p>Iniciales: {{ profe.iniciales }}</p>
-          <p>Horas restantes: {{ profe.horas_restantes() }}</p>
+          <p>Horas restantes: {{ profe.horas_disponibles() }}</p>
         </div>
         <div class="card-actions">
           <a href="{{ url_for('main.ver_profesor', nombre=profe.nombre) }}" class="button">Ver Detalles</a>

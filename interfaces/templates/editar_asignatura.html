@@ -7,7 +7,7 @@
         <div style="margin-bottom:1.2rem;">
           <label>
             <input type="checkbox" name="profesores" value="{{ profe.nombre }}" onchange="toggleSlider('{{ profe.nombre }}')">
-            {{ profe.nombre }} {{ profe.apellido }} ({{ profe.horas_restantes() }}h disponibles)
+            {{ profe.nombre }} {{ profe.apellido }} ({{ profe.horas_disponibles() }}h disponibles)
           </label><br>
           <div id="slider-{{ profe.nombre }}" style="display:none;">
             <label>Horas asignadas:</label>

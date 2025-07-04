@@ -9,7 +9,8 @@ class Asignatura:
 
     def asignar_profesor(self, profesor, horas):
         self.distribucion[profesor] = horas
-        profesor.asignaturas.append(self)
+        if self not in profesor.asignaturas:
+            profesor.asignaturas.append(self)
 
     def profesores(self):
         return list(self.distribucion.keys())

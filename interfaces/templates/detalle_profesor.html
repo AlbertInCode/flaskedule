@@ -2,8 +2,8 @@
 {% block content %}
   <div class="card card-large">
     <h2>{{ profe.nombre }} {{ profe.apellido }} ({{ profe.iniciales }})</h2>
-    <p>Horas asignadas: {{ profe.horas_asignadas() }}</p>
-    <p>Horas disponibles: {{ profe.horas_restantes() }}</p>
+    <p>Horas asignadas: {{ profe.horas_asignadas }}</p>
+    <p>Horas disponibles: {{ profe.horas_disponibles() }}</p>
 
     {% if profe.grupo_dominante() %}
       <h3>Grupo con mayor carga</h3>

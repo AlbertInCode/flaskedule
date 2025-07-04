@@ -11,9 +11,9 @@
           <p><strong>Módulo:</strong> {{ asignatura.modulo }}</p>
           <p><strong>Horas semanales:</strong> {{ asignatura.horas }}</p>
           <p><strong>Profesores:</strong>
-            {% if asignatura.profesores %}
-              {{ asignatura.profesores | length }} → 
-              {% for profe in asignatura.profesores %}
+            {% if asignatura.distribucion %}
+              {{ asignatura.distribucion | length }} → 
+              {% for profe, horas in asignatura.distribucion.items %}
                 {{ profe.nombre }}{% if not loop.last %}, {% endif %}
               {% endfor %}
             {% else %}

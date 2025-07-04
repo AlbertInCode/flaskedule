@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from infrastructure.storage.json_loader import cargar_profesores, cargar_asignaturas
 from infrastructure.storage.json_saver import guardar_profesores, guardar_asignaturas
 from domain.services.asignacion import nominar_tutor
+from application.orchestrator import asignar_profesor_a_asignatura, generar_resumen_general
 
 main = Blueprint('main', __name__)
 
@@ -11,6 +12,43 @@ asignaturas = cargar_asignaturas(profesores=profesores)
 @main.route('/')
 def index():
     return render_template('index.html', profesores=profesores)
+
+@main.route('/profesor/<nombre>')
+def ver_profesor(nombre):
+    profe = next((p for p in profesores if p.nombre == nombre), None)
+    cursos = {}
+    for a in profe.asignaturas:
+        cursos[a.curso] = cursos.get(a.curso, 0) + a.horas_por_profesor(profe)
+    return render_template('detalle_profesor.html',
+                           profe=profe,
+                           cursos=list(cursos.keys()),
+                           horas_por_curso=list(cursos.values()))
+
+@main.route('/nominar/<nombre>', methods=['POST'])
+def nominar(nombre):
+    profe = next((p for p in profesores if p.nombre == nombre), None)
+    nominar_como_tutor(profe)
+    guardar_profesores(profesores)
+    return redirect(url_for('main.ver_profesor', nombre=nombre))
+
+@main.route('/resumen')
+def resumen():
+    resumen_info = generar_resumen_general(profesores, asignaturas)
+
+    ciclo_count = {}
+    modulo_count = {}
+    for a in asignaturas:
+        ciclo_count[a.ciclo] = ciclo_count.get(a.ciclo, 0) + 1
+        modulo_count[a.modulo] = modulo_count.get(a.modulo, 0) + 1
+
+    return render_template('resumen.html',
+                           asignaturas=asignaturas,
+                           profesores=profesores,
+                           sin_asignar=resumen_info['sin_asignar'],
+                           ciclos=list(ciclo_count.keys()),
+                           ciclo_vals=list(ciclo_count.values()),
+                           modulos=list(modulo_count.keys()),
+                           modulo_vals=list(modulo_count.values()))
 
 @main.route('/asignar/<int:idx>', methods=['GET', 'POST'])
 def asignar_asignatura(idx):
@@ -34,45 +72,6 @@ def asignar_asignatura(idx):
         return redirect(url_for('main.index'))
 
     return render_template('asignar.html', asignatura=asignatura, profesores=profesores)
-
-@main.route('/resumen')
-def resumen():
-    sin_asignar = [a for a in asignaturas if not a.esta_asignada()]
-    
-    # Conteo por módulo
-    modulo_stats = {}
-    for a in asignaturas:
-        if a.modulo not in modulo_stats:
-            modulo_stats[a.modulo] = {"count": 0, "horas": 0}
-        modulo_stats[a.modulo]["count"] += 1
-        modulo_stats[a.modulo]["horas"] += a.horas
-
-    modulos = list(modulo_stats.keys())
-    modulo_counts = [modulo_stats[m]["count"] for m in modulos]
-    modulo_horas = [modulo_stats[m]["horas"] for m in modulos]
-
-    return render_template("resumen.html",
-        profesores=profesores,
-        asignaturas=asignaturas,
-        sin_asignar=sin_asignar,
-        modulos=modulos,
-        modulo_counts=modulo_counts,
-        modulo_horas=modulo_horas
-    )
-
-
-@main.route('/profesor/<nombre>')
-def ver_profesor(nombre):
-    profe = next((p for p in profesores if p.nombre == nombre), None)
-    return render_template("detalle_profesor.html", profe=profe)
-
-
-@main.route('/nominar/<nombre>', methods=['POST'])
-def nominar_tutor(nombre):
-    profe = next((p for p in profesores if p.nombre == nombre), None)
-    nominar_tutor(profe)
-    guardar_profesores(profesores)
-    return redirect(url_for('main.ver_profesor', nombre=nombre))
 
 @main.route('/asignaturas')
 def vista_asignaturas():
