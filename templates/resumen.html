@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="section">
+  <h2>Resumen general</h2>
+
+  <div class="accordion">
+    <div class="accordion-item">
+      <input type="checkbox" id="asignaturas_sin" />
+      <label for="asignaturas_sin">📌 Asignaturas sin asignar</label>
+      <div class="accordion-content">
+        <ul>
+          {% for a in asignaturas if not a.esta_asignada() %}
+            <li style="color:red;">❌ {{ a.nombre }} ({{ a.curso }} - {{ a.modulo }})</li>
+          {% else %}
+            <li>Todas las asignaturas están asignadas ✔️</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <input type="checkbox" id="equilibrio" />
+      <label for="equilibrio">⚖️ Reparto por asignatura</label>
+      <div class="accordion-content">
+        <ul>
+          {% for a in asignaturas %}
+            <li>{{ a.nombre }} → 
+              {% if a.reparto_equilibrado() %}
+                <span style="color:green;">Equilibrado</span>
+              {% else %}
+                <span style="color:orange;">Desbalanceado</span>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <input type="checkbox" id="tabla" />
+      <label for="tabla">🧮 Tabla comparativa por curso y módulo</label>
+      <div class="accordion-content scroll-table">
+        <table class="tabla">
+          <thead>
+            <tr><th>Curso</th><th>Módulo</th><th>Asignatura</th><th>Profesores</th><th>Horas</th></tr>
+          </thead>
+          <tbody>
+            {% for a in asignaturas %}
+              <tr>
+                <td>{{ a.curso }}</td>
+                <td>{{ a.ciclo }}</td>
+                <td>{{ a.modulo }}</td>
+                <td>{{ a.nombre }}</td>
+                <td>
+                  {% if a.profesores %}
+                    {% for p in a.profesores %}{{ p.nombre }}{% if not loop.last %}, {% endif %}{% endfor %}
+                  {% else %}<span style="color:red;">Sin asignar</span>{% endif %}
+                </td>
+                <td>{{ a.horas }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="card card-large">
+  <h3>Asignaturas por módulo</h3>
+  <canvas id="moduloAsignaturasChart" height="220"></canvas>
+</div>
+
+<div class="card card-large">
+  <h3>Carga horaria por módulo</h3>
+  <canvas id="moduloHorasChart" height="220"></canvas>
+</div>
+
+
+</div>
+<div class="card card-large">
+  <h3>Asignaturas por módulo</h3>
+  <canvas id="moduloAsignaturasChart" height="220"></canvas>
+</div>
+
+<div class="card card-large">
+  <h3>Carga horaria por módulo</h3>
+  <canvas id="moduloHorasChart" height="220"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const moduloAsignaturasChart = new Chart(document.getElementById('moduloAsignaturasChart'), {
+    type: 'bar',
+    data: {
+      labels: {{ modulos | tojson }},
+      datasets: [{
+        label: 'Asignaturas',
+        data: {{ modulo_counts | tojson }},
+        backgroundColor: '#6b5b95'
+      }]
+    },
+    options: {
+      plugins: {
+        legend: { display: false }
+      },
+      scales: {
+        y: { beginAtZero: true, stepSize: 1 }
+      }
+    }
+  });
+
+  const moduloHorasChart = new Chart(document.getElementById('moduloHorasChart'), {
+    type: 'bar',
+    data: {
+      labels: {{ modulos | tojson }},
+      datasets: [{
+        label: 'Horas semanales',
+        data: {{ modulo_horas | tojson }},
+        backgroundColor: '#f7b733'
+      }]
+    },
+    options: {
+      plugins: {
+        legend: { display: false }
+      },
+      scales: {
+        y: { beginAtZero: true }
+      }
+    }
+  });
+</script>
+
+
+{% endblock %}

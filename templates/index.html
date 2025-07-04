@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="grid">
+    {% for profe in profesores %}
+      <div class="card">
+        <div class="card-content">
+          <h2>{{ profe.nombre }} {{ profe.apellido }}</h2>
+          <p><strong>Iniciales:</strong> {{ profe.iniciales }}</p>
+          <p><strong>Horas restantes:</strong> {{ profe.horas_restantes() }}</p>
+          <p><strong>Asignaturas:</strong> {{ profe.asignaturas | length }}</p>
+        </div>
+        <div class="card-actions">
+          <a href="{{ url_for('main.ver_profesor', nombre=profe.nombre) }}" class="button">Ver Detalles</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

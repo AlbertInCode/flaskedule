@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="card card-large">
+    <h2>Editar: {{ asignatura.nombre }}</h2>
+    <form method="POST">
+      {% for profe in profesores %}
+        <div style="margin-bottom:1.2rem;">
+          <label>
+            <input type="checkbox" name="profesores" value="{{ profe.nombre }}" onchange="toggleSlider('{{ profe.nombre }}')">
+            {{ profe.nombre }} {{ profe.apellido }} ({{ profe.horas_restantes() }}h disponibles)
+          </label><br>
+          <div id="slider-{{ profe.nombre }}" style="display:none;">
+            <label>Horas asignadas:</label>
+            <input type="range" name="horas" min="0" max="{{ asignatura.horas }}" value="0" oninput="this.nextElementSibling.innerText = this.value + 'h'">
+            <span>0h</span>
+          </div>
+        </div>
+      {% endfor %}
+      <p id="aviso-horas" style="font-weight:bold;"></p>
+
+      <button class="button" type="submit">Guardar cambios</button>
+    </form>
+  </div>
+
+  <script>
+  function toggleSlider(nombre) {
+    const slider = document.getElementById("slider-" + nombre);
+    slider.style.display = slider.style.display === "none" ? "block" : "none";
+  }
+
+  function validarHorasTotales(asignaturaHoras) {
+    const sliders = document.querySelectorAll('input[type="range"]');
+    let total = 0;
+    sliders.forEach(slider => {
+      total += parseInt(slider.value);
+    });
+
+    const aviso = document.getElementById("aviso-horas");
+    if (total > asignaturaHoras) {
+      aviso.textContent = `⚠️ Las horas asignadas (${total}) superan las horas de la asignatura (${asignaturaHoras}).`;
+      aviso.style.color = 'red';
+    } else {
+      aviso.textContent = `Horas asignadas: ${total} / ${asignaturaHoras}`;
+      aviso.style.color = 'green';
+    }
+  }
+
+  window.addEventListener("input", () => validarHorasTotales({{ asignatura.horas }}));
+</script>
+
+{% endblock %}

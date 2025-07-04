@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="card card-large">
+    <div class="card-content">
+      <h2>{{ profe.nombre }} {{ profe.apellido }} ({{ profe.iniciales }})</h2>
+      <p><strong>Horas asignadas:</strong> {{ profe.horas_asignadas }}</p>
+      <p><strong>Horas disponibles:</strong> {{ profe.horas_restantes() }}</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Asignaturas impartidas</h3>
+    {% if profe.asignaturas %}
+      <table class="tabla">
+        <thead>
+          <tr>
+            <th>Asignatura</th>
+            <th>Curso</th>
+            <th>Módulo</th>
+            <th>Horas</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for a in profe.asignaturas %}
+            <tr>
+              <td>{{ a.nombre }}</td>
+              <td>{{ a.curso }}</td>
+              <td>{{ a.modulo }}</td>
+              <td>{{ a.horas }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>Este profesor no tiene asignaturas asignadas actualmente.</p>
+    {% endif %}
+  </div>
+
+  {% if profe.grupo_dominante() %}
+    <div class="card">
+        <h3>Grupo con mayor carga</h3>
+        <p><strong>Curso:</strong> {{ profe.grupo_dominante()[0] }}</p>
+        <p><strong>Horas:</strong> {{ profe.grupo_dominante()[1] }}</p>
+
+        {% if profe.tutor_de == profe.grupo_dominante()[0] %}
+        <p style="color:green;"><strong>Ya es tutor de {{ profe.tutor_de }}</strong></p>
+        {% else %}
+        <form method="POST" action="{{ url_for('main.nominar_tutor', nombre=profe.nombre) }}">
+            <button type="submit" class="button">Nominar como tutor</button>
+        </form>
+        {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="card">
+  <h3>Distribución de horas por curso</h3>
+  <canvas id="grafico" width="280" height="280"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('grafico').getContext('2d');
+  const data = {
+    labels: {{ cursos|tojson }},
+    datasets: [{
+      data: {{ horas_por_curso|tojson }},
+      backgroundColor: ['#4a90e2','#f7b733','#e94e77','#6b5b95'],
+      borderWidth: 1
+    }]
+  };
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: data,
+    options: {
+      plugins: {
+        legend: { position: 'bottom' }
+      }
+    }
+  });
+</script>
+
+
+{% endblock %}

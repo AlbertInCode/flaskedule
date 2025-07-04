@@ -1,0 +1,50 @@
+[
+  {
+    "nombre": "Albert",
+    "apellido": "Alonso",
+    "asignaturas": [],
+    "horas_asignadas": 0
+  },
+  {
+    "nombre": "Manuel",
+    "apellido": "Molina",
+    "asignaturas": [],
+    "horas_asignadas": 0
+  },
+  {
+    "nombre": "Susana",
+    "apellido": "Barbero",
+    "asignaturas": [],
+    "horas_asignadas": 0
+  },
+  {
+    "nombre": "Josep",
+    "apellido": "Aranda",
+    "asignaturas": [],
+    "horas_asignadas": 0
+  },
+  {
+    "nombre": "Raimon",
+    "apellido": "Folch",
+    "asignaturas": [],
+    "horas_asignadas": 0
+  },
+  {
+    "nombre": "Chus",
+    "apellido": "Vazquez",
+    "asignaturas": [],
+    "horas_asignadas": 0
+  },
+  {
+    "nombre": "Txema",
+    "apellido": "Serrano",
+    "asignaturas": [],
+    "horas_asignadas": 0
+  },
+  {
+    "nombre": "Daniel",
+    "apellido": "Lorca",
+    "asignaturas": [],
+    "horas_asignadas": 0
+  }
+]

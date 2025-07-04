@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="grid">
+    {% for asignatura in asignaturas %}
+      <div class="card">
+        <div class="card-content">
+          <h2>{{ asignatura.nombre }}</h2>
+          <p><strong>Ciclo:</strong> {{ asignatura.ciclo }}</p>
+          <p><strong>Curso:</strong> {{ asignatura.curso }}</p>
+          <p><strong>Módulo:</strong> {{ asignatura.modulo }}</p>
+          <p><strong>Horas semanales:</strong> {{ asignatura.horas }}</p>
+          <p><strong>Profesores:</strong>
+            {% if asignatura.profesores %}
+              {{ asignatura.profesores | length }} → 
+              {% for profe in asignatura.profesores %}
+                {{ profe.nombre }}{% if not loop.last %}, {% endif %}
+              {% endfor %}
+            {% else %}
+              <span style="color: red;">Sin asignar ❌</span>
+            {% endif %}
+                <p><strong>Reparto:</strong>
+                {% if asignatura.reparto_equilibrado() %}
+                    <span style="color:green;">Equilibrado ✔️</span>
+                {% else %}
+                    <span style="color:orange;">Desbalance ⚠️</span>
+                {% endif %}
+                </p>
+          </p>
+        </div>
+        <div class="card-actions">
+          <a href="{{ url_for('main.editar_asignatura', idx=loop.index0) }}" class="button">Editar</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

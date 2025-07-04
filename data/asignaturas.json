@@ -1,0 +1,362 @@
+[
+  {
+    "nombre": "Muntatge i manteniment d’equips",
+    "modulo": "0221",
+    "ciclo": "SMX",
+    "curso": "1",
+    "horas": 231,
+    "profesores": []
+  },
+  {
+    "nombre": "Sistemes operatius monolloc",
+    "modulo": "0222",
+    "ciclo": "SMX",
+    "curso": "1",
+    "horas": 132,
+    "profesores": []
+  },
+  {
+    "nombre": "Aplicacions ofimàtiques",
+    "modulo": "0223",
+    "ciclo": "SMX",
+    "curso": "1",
+    "horas": 198,
+    "profesores": []
+  },
+  {
+    "nombre": "Sistemes operatius en xarxa",
+    "modulo": "0224",
+    "ciclo": "SMX",
+    "curso": "1",
+    "horas": 198,
+    "profesores": []
+  },
+  {
+    "nombre": "Xarxes locals",
+    "modulo": "0225",
+    "ciclo": "SMX",
+    "curso": "1",
+    "horas": 198,
+    "profesores": []
+  },
+  {
+    "nombre": "Seguretat informàtica",
+    "modulo": "0226",
+    "ciclo": "SMX",
+    "curso": "1",
+    "horas": 132,
+    "profesores": []
+  },
+  {
+    "nombre": "Serveis de xarxa",
+    "modulo": "0227",
+    "ciclo": "SMX",
+    "curso": "1",
+    "horas": 198,
+    "profesores": []
+  },
+  {
+    "nombre": "Aplicacions web",
+    "modulo": "0228",
+    "ciclo": "SMX",
+    "curso": "1",
+    "horas": 119,
+    "profesores": []
+  },
+  {
+    "nombre": "Anglès professional",
+    "modulo": "0156",
+    "ciclo": "SMX",
+    "curso": "1",
+    "horas": 66,
+    "profesores": []
+  },
+  {
+    "nombre": "Digitalització aplicada als sectors productius",
+    "modulo": "1664",
+    "ciclo": "SMX",
+    "curso": "1",
+    "horas": 33,
+    "profesores": []
+  },
+  {
+    "nombre": "Sostenibilitat aplicada al sistema productiu",
+    "modulo": "1708",
+    "ciclo": "SMX",
+    "curso": "1",
+    "horas": 33,
+    "profesores": []
+  },
+  {
+    "nombre": "Itinerari personal per a l'ocupabilitat I",
+    "modulo": "1709",
+    "ciclo": "SMX",
+    "curso": "1",
+    "horas": 99,
+    "profesores": []
+  },
+  {
+    "nombre": "Itinerari personal per a l'ocupabilitat II",
+    "modulo": "1710",
+    "ciclo": "SMX",
+    "curso": "1",
+    "horas": 66,
+    "profesores": []
+  },
+  {
+    "nombre": "Projecte intermodular",
+    "modulo": "1713",
+    "ciclo": "SMX",
+    "curso": "1",
+    "horas": 198,
+    "profesores": []
+  },
+  {
+    "nombre": "Implantació de sistemes operatius",
+    "modulo": "0369",
+    "ciclo": "ASIX",
+    "curso": "1",
+    "horas": 231,
+    "profesores": []
+  },
+  {
+    "nombre": "Planificació i administració de xarxes",
+    "modulo": "0370",
+    "ciclo": "ASIX",
+    "curso": "1",
+    "horas": 185,
+    "profesores": []
+  },
+  {
+    "nombre": "Fonaments de maquinari",
+    "modulo": "0371",
+    "ciclo": "ASIX",
+    "curso": "1",
+    "horas": 99,
+    "profesores": []
+  },
+  {
+    "nombre": "Gestió de bases de dades",
+    "modulo": "0372",
+    "ciclo": "ASIX",
+    "curso": "1",
+    "horas": 198,
+    "profesores": []
+  },
+  {
+    "nombre": "Llenguatge de marques i sistemes de gestió d’informació",
+    "modulo": "0373",
+    "ciclo": "ASIX",
+    "curso": "1",
+    "horas": 99,
+    "profesores": []
+  },
+  {
+    "nombre": "Administració de sistemes operatius",
+    "modulo": "0374",
+    "ciclo": "ASIX",
+    "curso": "1",
+    "horas": 198,
+    "profesores": []
+  },
+  {
+    "nombre": "Serveis de xarxa i internet",
+    "modulo": "0375",
+    "ciclo": "ASIX",
+    "curso": "1",
+    "horas": 132,
+    "profesores": []
+  },
+  {
+    "nombre": "Implantació d’aplicacions web",
+    "modulo": "0376",
+    "ciclo": "ASIX",
+    "curso": "1",
+    "horas": 99,
+    "profesores": []
+  },
+  {
+    "nombre": "Administració de sistemes gestors de bases de dades",
+    "modulo": "0377",
+    "ciclo": "ASIX",
+    "curso": "1",
+    "horas": 66,
+    "profesores": []
+  },
+  {
+    "nombre": "Seguretat i alta disponibilitat",
+    "modulo": "0378",
+    "ciclo": "ASIX",
+    "curso": "1",
+    "horas": 99,
+    "profesores": []
+  },
+  {
+    "nombre": "Anglès professional",
+    "modulo": "0179",
+    "ciclo": "ASIX",
+    "curso": "1",
+    "horas": 66,
+    "profesores": []
+  },
+  {
+    "nombre": "Digitalització aplicada als sectors productius",
+    "modulo": "1665",
+    "ciclo": "ASIX",
+    "curso": "1",
+    "horas": 33,
+    "profesores": []
+  },
+  {
+    "nombre": "Sostenibilitat aplicada al sistema productiu",
+    "modulo": "1708",
+    "ciclo": "ASIX",
+    "curso": "1",
+    "horas": 33,
+    "profesores": []
+  },
+  {
+    "nombre": "Itinerari personal per a l'ocupabilitat I",
+    "modulo": "1709",
+    "ciclo": "ASIX",
+    "curso": "1",
+    "horas": 99,
+    "profesores": []
+  },
+  {
+    "nombre": "Itinerari personal per a l'ocupabilitat II",
+    "modulo": "1710",
+    "ciclo": "ASIX",
+    "curso": "1",
+    "horas": 66,
+    "profesores": []
+  },
+  {
+    "nombre": "Projecte intermodular d'administració de sistemes informàtics en xarxa",
+    "modulo": "0379",
+    "ciclo": "ASIX",
+    "curso": "1",
+    "horas": 198,
+    "profesores": []
+  },
+  {
+    "nombre": "Llenguatges de marques i sistemes de gestió d’informació",
+    "modulo": "0373",
+    "ciclo": "DAW",
+    "curso": "1",
+    "horas": 99,
+    "profesores": []
+  },
+  {
+    "nombre": "Sistemes informàtics",
+    "modulo": "0483",
+    "ciclo": "DAW",
+    "curso": "1",
+    "horas": 165,
+    "profesores": []
+  },
+  {
+    "nombre": "Bases de dades",
+    "modulo": "0484",
+    "ciclo": "DAW",
+    "curso": "1",
+    "horas": 198,
+    "profesores": []
+  },
+  {
+    "nombre": "Programació",
+    "modulo": "0485",
+    "ciclo": "DAW",
+    "curso": "1",
+    "horas": 264,
+    "profesores": []
+  },
+  {
+    "nombre": "Entorns de desenvolupament",
+    "modulo": "0487",
+    "ciclo": "DAW",
+    "curso": "1",
+    "horas": 99,
+    "profesores": []
+  },
+  {
+    "nombre": "Desenvolupament web en entorn client",
+    "modulo": "0612",
+    "ciclo": "DAW",
+    "curso": "1",
+    "horas": 165,
+    "profesores": []
+  },
+  {
+    "nombre": "Desenvolupament web en entorn servidor",
+    "modulo": "0613",
+    "ciclo": "DAW",
+    "curso": "1",
+    "horas": 165,
+    "profesores": []
+  },
+  {
+    "nombre": "Desplegament d’aplicacions web",
+    "modulo": "0614",
+    "ciclo": "DAW",
+    "curso": "1",
+    "horas": 119,
+    "profesores": []
+  },
+  {
+    "nombre": "Disseny d’interfícies web",
+    "modulo": "0615",
+    "ciclo": "DAW",
+    "curso": "1",
+    "horas": 132,
+    "profesores": []
+  },
+  {
+    "nombre": "Anglès professional",
+    "modulo": "0179",
+    "ciclo": "DAW",
+    "curso": "1",
+    "horas": 66,
+    "profesores": []
+  },
+  {
+    "nombre": "Digitalització aplicada als sectors productius",
+    "modulo": "1665",
+    "ciclo": "DAW",
+    "curso": "1",
+    "horas": 33,
+    "profesores": []
+  },
+  {
+    "nombre": "Sostenibilitat aplicada al sistema productiu",
+    "modulo": "1708",
+    "ciclo": "DAW",
+    "curso": "1",
+    "horas": 33,
+    "profesores": []
+  },
+  {
+    "nombre": "Itinerari personal per a l'ocupabilitat I",
+    "modulo": "1709",
+    "ciclo": "DAW",
+    "curso": "1",
+    "horas": 99,
+    "profesores": []
+  },
+  {
+    "nombre": "Itinerari personal per a l'ocupabilitat II",
+    "modulo": "1710",
+    "ciclo": "DAW",
+    "curso": "1",
+    "horas": 66,
+    "profesores": []
+  },
+  {
+    "nombre": "Projecte intermodular de desenvolupament d'aplicacions web",
+    "modulo": "0616",
+    "ciclo": "DAW",
+    "curso": "1",
+    "horas": 198,
+    "profesores": []
+  }
+]

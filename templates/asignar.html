@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Asignar profesores a {{ asignatura.nombre }}</h2>
+  <form method="POST">
+    {% for profe in profesores %}
+      <label>
+        <input type="checkbox" name="profesores" value="{{ profe.nombre }}">
+        {{ profe.nombre }} {{ profe.apellido }} ({{ profe.horas_restantes() }}h disponibles)
+      </label><br>
+    {% endfor %}
+    <button type="submit">Asignar</button>
+  </form>
+{% endblock %}
