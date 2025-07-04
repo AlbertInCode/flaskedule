@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from models import Profesor, Asignatura
-from utils import cargar_profesores, cargar_asignaturas, guardar_profesores, guardar_asignaturas
+from infrastructure.storage.json_loader import cargar_profesores, cargar_asignaturas
+from infrastructure.storage.json_saver import guardar_profesores, guardar_asignaturas
+from domain.services.asignacion import nominar_tutor
 
 main = Blueprint('main', __name__)
 
@@ -9,7 +10,7 @@ asignaturas = cargar_asignaturas(profesores=profesores)
 
 @main.route('/')
 def index():
-    return render_template('index.html', profesores=profesores, asignaturas=asignaturas)
+    return render_template('index.html', profesores=profesores)
 
 @main.route('/asignar/<int:idx>', methods=['GET', 'POST'])
 def asignar_asignatura(idx):
@@ -63,24 +64,14 @@ def resumen():
 @main.route('/profesor/<nombre>')
 def ver_profesor(nombre):
     profe = next((p for p in profesores if p.nombre == nombre), None)
-
-    # Calcular distribución por curso
-    cursos = {}
-    for a in profe.asignaturas:
-        cursos[a.curso] = cursos.get(a.curso, 0) + a.horas
-
-    labels = list(cursos.keys())
-    horas = list(cursos.values())
-
-    return render_template("detalle_profesor.html", profe=profe, cursos=labels, horas_por_curso=horas)
+    return render_template("detalle_profesor.html", profe=profe)
 
 
 @main.route('/nominar/<nombre>', methods=['POST'])
 def nominar_tutor(nombre):
     profe = next((p for p in profesores if p.nombre == nombre), None)
-    if profe and profe.grupo_dominante():
-        profe.tutor_de = profe.grupo_dominante()[0]
-        guardar_profesores(profesores)
+    nominar_tutor(profe)
+    guardar_profesores(profesores)
     return redirect(url_for('main.ver_profesor', nombre=nombre))
 
 @main.route('/asignaturas')
