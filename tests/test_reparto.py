@@ -29,3 +29,10 @@ def test_reparto_equilibrado_con_fixture(profesores, asignaturas):
     redes.asignar_profesor(luis, 3)
 
     assert redes.reparto_equilibrado() is True
+
+def test_codocencia_equilibrada_y_desequilibrada(asignaturas_codocencia):
+    redes, bd, smx = asignaturas_codocencia
+
+    assert redes.reparto_equilibrado() is True
+    assert bd.reparto_equilibrado() is False
+    assert smx.esta_asignada() is False

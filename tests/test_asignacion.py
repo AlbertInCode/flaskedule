@@ -1,6 +1,7 @@
 from domain.models.profesor import Profesor
 from domain.models.asignatura import Asignatura
 from application.orchestrator import asignar_profesor_a_asignatura
+import pytest
 
 def test_asignar_profesor_valido():
     profe = Profesor("Carlos", "Ruiz")
@@ -25,3 +26,12 @@ def test_asignar_profesor_sin_horas():
         assert False  # no debe llegar aquí
     except ValueError:
         assert True
+
+def test_profesor_con_sobrecarga(profesores_cargados):
+    ana, _ = profesores_cargados
+    nueva = Asignatura("Hacking Ético", "M12", "ASIX", "2º", 4)
+
+    with pytest.raises(ValueError):
+        asignar_profesor_a_asignatura(ana, nueva, 2)
+
+    assert ana.horas_disponibles() == 0
