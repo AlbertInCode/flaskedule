@@ -6,6 +6,7 @@ class Profesor:
         self.apellido = apellido
         self.iniciales = f"{nombre[0]}{apellido[0]}".upper()
         self.asignaturas = []
+        self.tutor_de = None
 
     @property
     def horas_asignadas(self):

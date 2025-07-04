@@ -9,6 +9,7 @@ class Asignatura:
 
     def asignar_profesor(self, profesor, horas):
         self.distribucion[profesor] = horas
+        profesor.asignaturas.append(self)
 
     def profesores(self):
         return list(self.distribucion.keys())
